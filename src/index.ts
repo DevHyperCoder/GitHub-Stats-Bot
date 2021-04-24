@@ -1,3 +1,5 @@
+import {readmeCommand} from "./command";
+
 require("dotenv").config();
 
 import { Client, Message } from "discord.js";
@@ -25,14 +27,6 @@ async function main() {
   });
 
   client.login(token);
-}
-
-async function readmeCommand(msg: Message, args: Array<String>) {
-  args.forEach((i: String) => {
-    if (i.includes("https://github.com/")) {
-      msg.reply("Contains a link");
-    }
-  });
 }
 
 main();
