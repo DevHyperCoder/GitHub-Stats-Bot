@@ -22,7 +22,10 @@ export async function readmeCommand(msg: Message, args: Array<String>) {
         )
         return
     }
-    msg.reply(`${await getReadmeText(username!, repo_name!)}`);
+
+    // TODO split messages and workaround code-tags
+    // Peraps using a markdown parser is better
+    msg.reply(`\`\`\`md\n${await getReadmeText(username!, repo_name!)}\`\`\``);
 }
 
 async function getReadmeText(username:String,repoName:String) :Promise<String>{
