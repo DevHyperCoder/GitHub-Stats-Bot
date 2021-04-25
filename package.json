@@ -10,7 +10,7 @@
     "build": "tsc",
     "start": "node build/index.js",
     "dev": "nodemon --watch './**/*.ts' --exec 'ts-node' src/index.ts",
-    "lint": "prettier --write ."
+    "format": "prettier --write ."
   },
   "devDependencies": {
     "@types/node": "^14.14.41",
