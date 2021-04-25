@@ -14,23 +14,28 @@ export async function readmeCommand(msg: Message, args: Array<String>) {
   let url = matches?.shift();
   let username = matches?.shift();
   let repo_name = matches?.shift();
-  msg.channel.send(`**Link:** \`${url}\`\n**UserName:** ${username}\n**Repository Name:** ${repo_name}`);
+  msg.channel.send(
+    `**Link:** \`${url}\`\n**UserName:** ${username}\n**Repository Name:** ${repo_name}`
+  );
 
-    if (repo_name===null || username === null ) {
-        await msg.reply(
-            "UserName / RepoName is undefined"
-        )
-        return
-    }
+  if (repo_name === null || username === null) {
+    await msg.reply("UserName / RepoName is undefined");
+    return;
+  }
 
-    // TODO split messages and workaround code-tags
-    // Peraps using a markdown parser is better
-    msg.channel.send(`\`\`\`md\n${await getReadmeText(username!, repo_name!)}\`\`\``);
+  // TODO split messages and workaround code-tags
+  // Peraps using a markdown parser is better
+  msg.channel.send(
+    `\`\`\`md\n${await getReadmeText(username!, repo_name!)}\`\`\``
+  );
 }
 
-async function getReadmeText(username:String,repoName:String) :Promise<String>{
-    const resp = await fetch(`
-https://raw.githubusercontent.com/${username}/${repoName}/master/README.md`)
+async function getReadmeText(
+  username: String,
+  repoName: String
+): Promise<String> {
+  const resp = await fetch(`
+https://raw.githubusercontent.com/${username}/${repoName}/master/README.md`);
 
-    return resp.text();
+  return resp.text();
 }
