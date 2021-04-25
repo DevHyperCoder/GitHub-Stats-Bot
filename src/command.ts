@@ -14,7 +14,7 @@ export async function readmeCommand(msg: Message, args: Array<String>) {
   let url = matches?.shift();
   let username = matches?.shift();
   let repo_name = matches?.shift();
-  msg.reply(`\`${url}\` ${username} ${repo_name}`);
+  msg.channel.send(`**Link:** \`${url}\`\n**UserName:** ${username}\n**Repository Name:** ${repo_name}`);
 
     if (repo_name===null || username === null ) {
         await msg.reply(
@@ -25,7 +25,7 @@ export async function readmeCommand(msg: Message, args: Array<String>) {
 
     // TODO split messages and workaround code-tags
     // Peraps using a markdown parser is better
-    msg.reply(`\`\`\`md\n${await getReadmeText(username!, repo_name!)}\`\`\``);
+    msg.channel.send(`\`\`\`md\n${await getReadmeText(username!, repo_name!)}\`\`\``);
 }
 
 async function getReadmeText(username:String,repoName:String) :Promise<String>{
