@@ -1,4 +1,4 @@
-import {readmeCommand} from "./command";
+import { readmeCommand } from "./command";
 
 require("dotenv").config();
 
