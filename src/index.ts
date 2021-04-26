@@ -3,6 +3,7 @@ import { readmeCommand } from "./command";
 require("dotenv").config();
 
 import { Client, Message } from "discord.js";
+import { helpCommand } from "./commands/help";
 const client = new Client();
 
 async function main() {
@@ -22,6 +23,10 @@ async function main() {
     switch (command) {
       case "r":
         await readmeCommand(message, args);
+        break;
+      case "h":
+      case "help":
+        await helpCommand(message, args);
         break;
     }
   });
