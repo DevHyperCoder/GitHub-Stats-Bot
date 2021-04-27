@@ -1,5 +1,6 @@
 import { Message } from "discord.js";
 import fetch from "node-fetch";
+import { readmeErrorMsg } from "./constants"
 
 export async function readmeCommand(msg: Message, args: Array<String>) {
   let i = args.shift();
@@ -38,6 +39,9 @@ async function getReadmeText(
 ): Promise<String> {
   const resp = await fetch(`
 https://raw.githubusercontent.com/${username}/${repoName}/master/README.md`);
-
-  return resp.text();
+ if (resp.status !== 200) {
+	return readmeErrorMsg
+} else {
+	return resp.text();
+}
 }
