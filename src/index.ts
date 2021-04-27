@@ -1,5 +1,7 @@
 import { readmeCommand } from "./command";
+import { shouldParseMessage, getCommandAndArgs } from "./helper";
 
+// Load env variables
 require("dotenv").config();
 
 import { Client, Message } from "discord.js";
@@ -15,10 +17,9 @@ async function main() {
   });
 
   client.on("message", async (message: Message) => {
-    if (!message.content.startsWith(prefix) || message.author.bot) return;
+    if (!shouldParseMessage(prefix, message)) return;
 
-    const args = message.content.slice(prefix.length).trim().split(" ");
-    const command = args.shift()?.toLowerCase();
+    const { args, command } = getCommandAndArgs(prefix, message);
 
     switch (command) {
       case "r":

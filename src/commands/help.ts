@@ -1,5 +1,5 @@
 import { Message, MessageEmbed } from "discord.js";
-import { formatCode } from "../util";
+import { formatCode } from "../helper";
 
 export async function helpCommand(msg: Message, _: Array<String>) {
   const helpEmbed = new MessageEmbed()
