@@ -9,7 +9,11 @@ export function formatCode(code: String): String {
 // - Is the msg from a bot ?
 // - Does it start with the prefix ?
 export function shouldParseMessage(prefix: string, message: Message): boolean {
-  return message.content.startsWith(prefix) || !message.author.bot;
+  const hasPrefix = message.content.startsWith(prefix);
+  const isBot = message.author.bot;
+
+  console.log({ hasPrefix, isBot });
+  return hasPrefix && !isBot;
 }
 
 // Parse arguments and command

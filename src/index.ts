@@ -17,7 +17,11 @@ async function main() {
   });
 
   client.on("message", async (message: Message) => {
-    if (!shouldParseMessage(prefix, message)) return;
+    if (!shouldParseMessage(prefix, message)) {
+      return;
+    }
+
+    console.log(message.content);
 
     const { args, command } = getCommandAndArgs(prefix, message);
 
@@ -30,6 +34,8 @@ async function main() {
         await helpCommand(message, args);
         break;
     }
+
+    console.log("done");
   });
 
   client.login(token);

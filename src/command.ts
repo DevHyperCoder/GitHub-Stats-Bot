@@ -1,5 +1,6 @@
 import { Message } from "discord.js";
 import fetch from "node-fetch";
+
 export async function readmeCommand(msg: Message, args: Array<String>) {
   let i = args.shift();
   let matches = i?.match(
@@ -14,6 +15,7 @@ export async function readmeCommand(msg: Message, args: Array<String>) {
   let url = matches?.shift();
   let username = matches?.shift();
   let repo_name = matches?.shift();
+
   msg.channel.send(
     `**Link:** \`${url}\`\n**UserName:** ${username}\n**Repository Name:** ${repo_name}`
   );
