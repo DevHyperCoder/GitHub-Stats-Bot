@@ -18,6 +18,10 @@ async function main() {
   });
 
   client.on("message", async (message: Message) => {
+    if (message.mentions.has(client.user!)) {
+      await helpCommand(message, []);
+      return;
+    }
     if (!shouldParseMessage(prefix, message)) {
       return;
     }
