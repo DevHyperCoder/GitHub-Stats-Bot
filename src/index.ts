@@ -1,11 +1,12 @@
-import { readmeCommand } from "./command";
+import { readmeCommand } from "./commands/readme";
+import { helpCommand } from "./commands/help";
+
 import { shouldParseMessage, getCommandAndArgs } from "./helper";
 
 // Load env variables
 require("dotenv").config();
 
 import { Client, Message } from "discord.js";
-import { helpCommand } from "./commands/help";
 const client = new Client();
 
 async function main() {

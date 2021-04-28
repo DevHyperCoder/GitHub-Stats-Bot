@@ -1,6 +1,6 @@
 import { Message } from "discord.js";
 import fetch from "node-fetch";
-import { readmeErrorMsg } from "./constants";
+import { readmeErrorMsg, readmeOver2000 } from "../constants";
 
 export async function readmeCommand(msg: Message, args: Array<String>) {
   let i = args.shift();
@@ -28,8 +28,9 @@ export async function readmeCommand(msg: Message, args: Array<String>) {
 
   // TODO split messages and workaround code-tags
   // Peraps using a markdown parser is better
+  const readme = await getReadmeText(username!, repo_name!);
   msg.channel.send(
-    `\`\`\`md\n${await getReadmeText(username!, repo_name!)}\`\`\``
+    `\`\`\`md\n${readme.length > 2000 ? readmeOver2000 : readme}\`\`\``
   );
 }
 
@@ -41,7 +42,6 @@ async function getReadmeText(
 https://raw.githubusercontent.com/${username}/${repoName}/master/README.md`);
   if (resp.status !== 200) {
     return readmeErrorMsg;
-  } else {
-    return resp.text();
   }
+  return resp.text();
 }
