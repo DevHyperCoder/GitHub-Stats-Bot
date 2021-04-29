@@ -4,6 +4,8 @@ import { readmeErrorMsg, readmeOver2000 } from "../constants";
 
 import { Command } from "../interfaces";
 export const readmeCommand: Command = {
+    helpLong:"",
+    helpShort:"",
   name: "Readme Command",
   cmd: ["r", "readme"],
   execute: async (msg: Message, args: Array<String>) => {

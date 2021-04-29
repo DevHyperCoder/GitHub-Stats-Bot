@@ -3,7 +3,9 @@ import { Command, UserRepos } from "src/interfaces";
 import fetch from "node-fetch";
 
 export const userRepoCommand: Command = {
-  name: "Shows all the repositories of a user",
+    helpLong:"",
+    helpShort:"",
+    name: "Shows all the repositories of a user",
   cmd: ["ur", "userrepo"],
   execute: async (msg: Message, args: Array<String>) => {
     let i = args.shift();

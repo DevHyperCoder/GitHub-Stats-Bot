@@ -3,12 +3,15 @@ import { formatCode } from "../helper";
 import { Command } from "../interfaces";
 
 export const helpCommand: Command = {
+    helpShort:"",
+    helpLong:"",
   name: "Help command",
   cmd: ["h", "help"],
   execute: async (msg: Message, _: Array<String>) => {
     const helpEmbed = new MessageEmbed()
       .setColor("#FFFFFF")
       .setTitle("Help for Github Stats Bot")
+      // TODO Redo this use the commandList array
       .setDescription(
         `
 **Command List**
