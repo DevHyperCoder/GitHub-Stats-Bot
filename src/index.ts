@@ -1,12 +1,12 @@
 import { readmeCommand } from "./commands/readme";
 import { helpCommand } from "./commands/help";
-
 import { shouldParseMessage, getCommandAndArgs } from "./helper";
 
 // Load env variables
 require("dotenv").config();
 
 import { Client, Message } from "discord.js";
+import { userReposCommand } from "./commands/userRepos";
 const client = new Client();
 
 async function main() {
@@ -37,6 +37,9 @@ async function main() {
       case "h":
       case "help":
         await helpCommand(message, args);
+        break;
+      case "ur":
+        userReposCommand(message, args);
         break;
     }
 
