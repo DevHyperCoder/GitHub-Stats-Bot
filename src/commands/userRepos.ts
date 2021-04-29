@@ -1,30 +1,34 @@
 import { Message } from "discord.js";
-import UserRepos from "src/interfaces";
+import { Command, UserRepos } from "src/interfaces";
 import fetch from "node-fetch";
 
-export async function userReposCommand(msg: Message, args: Array<String>) {
-  let i = args.shift();
-  let matches = i?.match("https?://github.com/([a-zA-Z0-9-_]+)");
+export const userRepoCommand: Command = {
+  name: "Shows all the repositories of a user",
+  cmd: ["ur", "userrepo"],
+  execute: async (msg: Message, args: Array<String>) => {
+    let i = args.shift();
+    let matches = i?.match("https?://github.com/([a-zA-Z0-9-_]+)");
 
-  if (matches === null) {
-    await msg.reply(`${i} is not a  github user`);
-    return;
-  }
+    if (matches === null) {
+      await msg.reply(`${i} is not a  github user`);
+      return;
+    }
 
-  let url = matches?.shift();
-  let username = matches?.shift();
+    let url = matches?.shift();
+    let username = matches?.shift();
 
-  msg.channel.send(`Link :- ${url}\n Username :- ${username}`);
+    msg.channel.send(`Link :- ${url}\n Username :- ${username}`);
 
-  if (username === null) {
-    await msg.reply("Username is undefined");
-    return;
-  }
-  const userRepos = await getUserRepos(username!);
-  msg.channel.send(`
+    if (username === null) {
+      await msg.reply("Username is undefined");
+      return;
+    }
+    const userRepos = await getUserRepos(username!);
+    msg.channel.send(`
 		${userRepos}
 			 `);
-}
+  },
+};
 
 async function getUserRepos(username: String): Promise<String | String[]> {
   const req = await fetch(`
